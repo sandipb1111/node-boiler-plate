@@ -1,17 +1,21 @@
-// const express = require("express")
-// const app = express()
-// const port = 3000
+import { config } from "dotenv"
+import cors from "cors"
+import express, { Request, Response } from "express"
+import crypto from "crypto"
 
-// app.get("/", (req: any, res: any) => {
-//     res.send("Hey There its express js")
-// })
+config()
 
-// app.get("/greet", (req: any, res: any) => {
-//     res.send("Hey There")
-// })
+const app = express()
 
-// app.listen(port, () => {
-//     console.log(`Example app listening on port ${port}`)
-// })
-// console.log("Yo")
-console.log("yo")
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
+app.use("/", (req: Request, res: Response) => {
+    res.send("Hello World")
+})
+
+const PORT = process.env.PORT || 3000
+
+app.listen(PORT, () => {
+    console.log(`Listening at port ${PORT}`)
+})
